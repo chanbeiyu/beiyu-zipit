@@ -4,12 +4,15 @@ import sitemap from '@astrojs/sitemap'
 import compress from 'astro-compress'
 import robotsTxt from 'astro-robots-txt'
 import { defineConfig } from 'astro/config'
+import createFontSlice from 'font-slice'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeKatex from 'rehype-katex'
 import remarkMath from 'remark-math'
 import UnoCSS from 'unocss/astro'
 import { themeConfig } from './src/config'
+
 import { langMap } from './src/i18n/config'
+
 import { remarkReadingTime } from './src/plugins/remark-reading-time'
 
 const url = themeConfig.site.url
@@ -78,3 +81,10 @@ export default defineConfig({
     enabled: false,
   },
 })
+
+// createFontSlice({
+//   // fontPath
+//   fontPath: 'public/font/LXGWWenKaiLite-Medium.ttf',
+//   // outputDir
+//   outputDir: 'public/font/aaaaa',
+// })

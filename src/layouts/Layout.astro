@@ -20,7 +20,7 @@ interface Props {
 
 const { postTitle, postDescription, postSlug, supportedLangs = [] } = Astro.props
 const { isPost } = getPageInfo(Astro.url.pathname)
-const fontStyle = themeConfig.global.fontStyle === 'serif' ? 'font-serif' : 'font-sans'
+const fontStyle = themeConfig.global.fontStyle === 'serif' ? 'font-serif' : themeConfig.global.fontStyle === 'sans' ? 'font-sans' : 'font-lxgw'
 const MarginBottom = isPost && themeConfig.comment?.enabled
   ? 'mb-10' // Post page with comment system
   : 'mb-12' // Other pages
