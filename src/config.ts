@@ -83,10 +83,10 @@ export const themeConfig: ThemeConfig = {
         // more emojis: https://waline.js.org/en/guide/features/emoji.html
       ],
       // gif search
-      search: true, // true, false
+      search: false, // true, false
       // image uploader
       // bug: unable to hide image uploader icon
-      imageUploader: false, // true, false
+      imageUploader: true, // true, false
     },
   },
   // COMMENT SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
@@ -145,7 +145,7 @@ export const themeConfig: ThemeConfig = {
       },
       {
         name: 'GitHub',
-        url: 'https://github.com/chabeiyu',
+        url: 'https://github.com/chanbeiyu',
       },
       {
         name: 'Douban',
@@ -157,7 +157,7 @@ export const themeConfig: ThemeConfig = {
       },
     ],
     // year of website start
-    startYear: 2024,
+    startYear: 2025,
   },
   // FOOTER SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 

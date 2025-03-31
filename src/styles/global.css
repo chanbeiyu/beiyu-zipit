@@ -55,7 +55,7 @@ html[data-theme-transition] [data-disable-transition-on-theme] {
 }
 
 code, kbd, samp, pre {
-  font-family:  ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", 'LXGWBright-Regular', monospace !important
+  font-family:  ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", 'LXGWWenKaiLite-Medium', monospace !important
 }
 
 /* Import Custom Fonts >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */

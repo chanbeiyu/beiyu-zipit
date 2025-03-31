@@ -3,6 +3,7 @@ title: Tao Te Ching
 published: 2025-03-30
 tags: ["Tao","Modern Literature"]
 lang: en
+toc: false
 abbrlink: tao-te-ching
 ---
 

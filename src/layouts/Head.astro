@@ -2,6 +2,8 @@
 import { allLocales, defaultLocale, themeConfig } from '@/config'
 import { ui } from '@/i18n/ui'
 import { getPageInfo } from '@/utils/page'
+import Analytics from '@vercel/analytics/astro'
+import SpeedInsights from '@vercel/speed-insights/astro'
 import { ClientRouter } from 'astro:transitions'
 
 interface Props {
@@ -182,4 +184,18 @@ window
     data-cache="true"
   />
 )}
+
+<!-- Vercel Analytics -->
+<Analytics />
+<!-- Vercel SpeedInsights -->
+<!--
+（可选）您可以通过向全局窗口对象添加 speedInsightsBeforeSend 函数来从 URL 中删除敏感信息。<SpeedInsights /> 组件将在向 Vercel 发送任何数据之前调用此方法：
+<script is:inline>
+  function speedInsightsBeforeSend(data){
+    console.log("Speed Insights before send", data)
+    return data;
+  }
+</script> -->
+<SpeedInsights />
+
 </head>

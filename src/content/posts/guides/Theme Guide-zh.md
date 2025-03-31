@@ -1,9 +1,7 @@
 ---
 title: 主题上手指南
-published: 2025-01-26
-updated: 2025-03-12
+published: 1848-02-21
 tags: [博客主题, 指南]
-pin: 99
 lang: zh
 abbrlink: theme-guide
 ---
