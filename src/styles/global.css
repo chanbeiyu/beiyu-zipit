@@ -54,7 +54,7 @@ html[data-theme-transition] [data-disable-transition-on-theme] {
   }
 }
 
-code, kbd, samp, pre {
+code {
   font-family:  ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", 'LXGWWenKaiLite-Medium', monospace !important
 }
 

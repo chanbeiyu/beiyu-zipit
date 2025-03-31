@@ -58,12 +58,12 @@ abbrlink: markdown-style-guide
 ### 语法
 
 ```markdown
-![图片描述](./full/or/relative/path/of/image)
+![图片描述](https://cdn.ensoul.club/img/examples/img-2.jpg)
 ```
 
 ### 效果
 
-![图片描述](/image-placeholder)
+![图片描述](https://cdn.ensoul.club/img/examples/img-2.jpg)
 
 ## 块引用
 

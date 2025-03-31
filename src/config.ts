@@ -86,7 +86,7 @@ export const themeConfig: ThemeConfig = {
       search: false, // true, false
       // image uploader
       // bug: unable to hide image uploader icon
-      imageUploader: true, // true, false
+      imageUploader: false, // true, false
     },
   },
   // COMMENT SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
@@ -132,6 +132,8 @@ export const themeConfig: ThemeConfig = {
     // automatically generate website screenshots for open graph images
     // get your access key at: https://apiflash.com/
     apiflashKey: '',
+    vercelAnalytics: true,
+    vercelSpeedInsights: true,
   },
   // SEO SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 

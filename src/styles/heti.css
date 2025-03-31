@@ -215,20 +215,8 @@ html.dark .heti :where(mark) {
   content: "腳註";
   --at-apply: 'block text-5 font-semibold mt-6 mb-3';
 }
-.footnotes:lang(ja)::before {
-  content: "脚注";
-  --at-apply: 'block text-5 font-semibold mt-6 mb-3';
-}
 .footnotes:lang(en)::before {
   content: "Footnotes";
-  --at-apply: 'block text-5 font-semibold mt-6 mb-3';
-}
-.footnotes:lang(es)::before {
-  content: "Notas al pie";
-  --at-apply: 'block text-5 font-semibold mt-6 mb-3';
-}
-.footnotes:lang(ru)::before {
-  content: "Сноски";
   --at-apply: 'block text-5 font-semibold mt-6 mb-3';
 }
 .heti :where(.data-footnote-backref) {

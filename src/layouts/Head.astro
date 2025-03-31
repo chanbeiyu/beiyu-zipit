@@ -19,7 +19,7 @@ const langCode = currentLang === defaultLocale ? '' : `/${currentLang}`
 
 const { title, subtitle, description, author, url, favicon, i18nTitle } = themeConfig.site
 const { mode, light: { background: lightMode }, dark: { background: darkMode } } = themeConfig.color
-const { verification = {}, twitterID = '', googleAnalyticsID = '', umamiAnalyticsID = '', apiflashKey = '' } = themeConfig.seo ?? {}
+const { verification = {}, twitterID = '', googleAnalyticsID = '', umamiAnalyticsID = '', apiflashKey = '', vercelAnalytics = false, vercelSpeedInsights = false } = themeConfig.seo ?? {}
 const { google = '', bing = '', yandex = '', baidu = '' } = verification
 const { commentURL = '', imageHostURL = '', customGoogleAnalyticsJS = '', customUmamiAnalyticsJS = '' } = themeConfig.preload
 
@@ -186,9 +186,12 @@ window
 )}
 
 <!-- Vercel Analytics -->
-<Analytics />
-<!-- Vercel SpeedInsights -->
+{vercelAnalytics && (
+  <Analytics />
+)}
+
 <!--
+ Vercel SpeedInsights
 （可选）您可以通过向全局窗口对象添加 speedInsightsBeforeSend 函数来从 URL 中删除敏感信息。<SpeedInsights /> 组件将在向 Vercel 发送任何数据之前调用此方法：
 <script is:inline>
   function speedInsightsBeforeSend(data){
@@ -196,6 +199,8 @@ window
     return data;
   }
 </script> -->
-<SpeedInsights />
+{vercelSpeedInsights && (
+  <SpeedInsights />
+)}
 
 </head>

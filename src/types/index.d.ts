@@ -61,6 +61,8 @@ export interface ThemeConfig {
       userID?: string
     }
     apiflashKey?: string
+    vercelAnalytics?: boolean
+    vercelSpeedInsights?: boolean
   }
 
   footer: {
