@@ -147,13 +147,13 @@ export const themeConfig: ThemeConfig = {
         name: 'GitHub',
         url: 'https://github.com/chanbeiyu',
       },
-      {
-        name: 'Douban',
-        url: 'https://www.douban.com/people/findstay/',
-      },
+      // {
+      //   name: 'Douban',
+      //   url: 'https://www.douban.com/people/findstay/',
+      // },
       {
         name: 'Email',
-        url: 'https://chanbeiyu@outlook.com',
+        url: 'mailto:chanbeiyu@outlook.com',
       },
     ],
     // year of website start
