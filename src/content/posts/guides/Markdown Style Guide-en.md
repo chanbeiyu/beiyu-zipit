@@ -58,12 +58,12 @@ To add an image, add an exclamation mark `!`, followed by alt text in brackets `
 ### Syntax
 
 ```markdown
-![Image Description](https://cdn.ensoul.club/img/examples/img-2.jpg)
+![Image Description](https://cdn.ensoul.club/img/examples/img-2.webp)
 ```
 
 ### Output
 
-![Image Description](https://cdn.ensoul.club/img/examples/img-2.jpg)
+![Image Description](https://cdn.ensoul.club/img/examples/img-2.webp)
 
 ## Blockquotes
 

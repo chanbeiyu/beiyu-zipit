@@ -3,7 +3,6 @@ import type { supportedLangs } from '@/i18n/config'
 type Exclude<T, U> = T extends U ? never : T
 
 export interface ThemeConfig {
-
   site: {
     title: string
     subtitle: string
@@ -13,31 +12,46 @@ export interface ThemeConfig {
     url: string
     favicon: string
   }
-
   color: {
-    mode: 'light' | 'dark'
+    mode: 'light' | 'dark' | 'auto'
     light: {
       primary: string
       secondary: string
       background: string
+      highlight: string
     }
     dark: {
       primary: string
       secondary: string
       background: string
+      highlight: string
     }
   }
-
   global: {
     locale: typeof supportedLangs[number]
     moreLocales: typeof supportedLangs[number][]
     fontStyle: 'sans' | 'serif' | 'lxgw'
     dateFormat: 'YYYY-MM-DD' | 'MM-DD-YYYY' | 'DD-MM-YYYY' | 'MONTH DAY YYYY' | 'DAY MONTH YYYY'
-    titleGap: 1 | 2 | 3
+    toc: boolean
+    katex: boolean
+    reduceMotion: boolean
   }
-
   comment: {
     enabled: boolean
+    giscus?: {
+      repo?: string
+      repoId?: string
+      category?: string
+      categoryId?: string
+      mapping?: 'pathname' | 'url' | 'title' | 'og:title'
+      strict?: '0' | '1'
+      reactionsEnabled?: '0' | '1'
+      emitMetadata?: '0' | '1'
+      inputPosition?: 'top' | 'bottom'
+    }
+    twikoo?: {
+      envId?: string
+    }
     waline?: {
       serverURL?: string
       emoji?: string[]
@@ -45,7 +59,6 @@ export interface ThemeConfig {
       imageUploader?: boolean
     }
   }
-
   seo?: {
     twitterID?: string
     verification?: {
@@ -64,7 +77,6 @@ export interface ThemeConfig {
     vercelAnalytics?: boolean
     vercelSpeedInsights?: boolean
   }
-
   footer: {
     links: {
       name: string
@@ -72,10 +84,7 @@ export interface ThemeConfig {
     }[]
     startYear: number
   }
-
-  preload: {
-    linkPrefetch: 'hover' | 'tap' | 'viewport' | 'load'
-    commentURL?: string
+  preload?: {
     imageHostURL?: string
     customGoogleAnalyticsJS?: string
     customUmamiAnalyticsJS?: string

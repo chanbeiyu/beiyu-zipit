@@ -1,4 +1,13 @@
 export const ui = {
+  'de': {
+    title: 'Neusatz',
+    subtitle: 'Die Schönheit der Typografie wiederbeleben',
+    description: 'Retypeset ist ein statisches Blog-Theme basierend auf dem Astro-Framework, auf Deutsch bekannt als "Neusatz". Dieses Theme, inspiriert von traditioneller Typografie, etabliert einen neuen visuellen Standard und gestaltet alle Seiten neu, um ein Leseerlebnis ähnlich dem gedruckter Bücher zu schaffen und die Schönheit des Satzes wiederzubeleben. Jedes Element ist bis ins kleinste Detail durchdacht, Eleganz zeigt sich auch im kleinsten Raum.',
+    posts: 'Beiträge',
+    tags: 'Schlagwörter',
+    about: 'Über',
+    toc: 'Inhaltsverzeichnis',
+  },
   'zh': {
     title: '赋予灵魂',
     subtitle: '千年暗室，一灯即明',

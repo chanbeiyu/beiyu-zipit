@@ -58,12 +58,12 @@ abbrlink: markdown-style-guide
 ### 語法
 
 ```markdown
-![圖片描述](https://cdn.ensoul.club/img/examples/img-2.jpg)
+![圖片描述](https://cdn.ensoul.club/img/examples/img-2.webp)
 ```
 
 ### 效果
 
-![圖片描述](https://cdn.ensoul.club/img/examples/img-2.jpg)
+![圖片描述](https://cdn.ensoul.club/img/examples/img-2.webp)
 
 ## 區塊引用
 

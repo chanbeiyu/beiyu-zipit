@@ -1,17 +1,11 @@
 import type { CollectionEntry } from 'astro:content'
-import { defaultLocale } from '@/config'
 import MarkdownIt from 'markdown-it'
+import { defaultLocale } from '@/config'
 
-type ExcerptScene = 'list' | 'meta' | 'og' | 'rss'
+type ExcerptScene = 'list' | 'meta' | 'og' | 'feed'
 
-const parser = new MarkdownIt()
-const isCJKLang = (lang: string) => ['zh', 'zh-tw', 'ja'].includes(lang)
-
-// Excerpt length in different scenarios
-const EXCERPT_LENGTHS: Record<ExcerptScene, {
-  cjk: number
-  other: number
-}> = {
+const markdownParser = new MarkdownIt()
+const excerptLengths: Record<ExcerptScene, { cjk: number, other: number }> = {
   list: {
     cjk: 120,
     other: 240,
@@ -24,51 +18,74 @@ const EXCERPT_LENGTHS: Record<ExcerptScene, {
     cjk: 70,
     other: 140,
   },
-  rss: {
+  feed: {
     cjk: 70,
     other: 140,
   },
 }
-
-// Generate an excerpt from Markdown content
-export function generateExcerpt(
-  content: string,
-  scene: ExcerptScene,
-  lang: string,
-): string {
-  if (!content)
-    return ''
-
-  const length = isCJKLang(lang)
-    ? EXCERPT_LENGTHS[scene].cjk
-    : EXCERPT_LENGTHS[scene].other
-
-  // Remove all HTML tags and decode HTML entities
-  const plainText = parser.render(content)
-    .replace(/<[^>]*>/g, '')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
-    .replace(/&apos;/g, '\'')
-    .replace(/&nbsp;/g, ' ')
-
-  // Replace line breaks with spaces
-  const normalizedText = plainText.replace(/\s+/g, ' ')
-  const excerpt = normalizedText.slice(0, length).trim()
-  // Add ellipsis if text was truncated
-  return normalizedText.length > length ? `${excerpt}...` : excerpt
+const htmlEntityMap: Record<string, string> = {
+  '&lt;': '<',
+  '&gt;': '>',
+  '&amp;': '&',
+  '&quot;': '"',
+  '&apos;': '\'',
+  '&nbsp;': ' ',
 }
 
-// Automatically generate a description for the article
-export function generateDescription(
+// Creates a clean text excerpt with length limits by language and scene
+function getExcerpt(text: string, lang: string, scene: ExcerptScene): string {
+  const isCJK = (lang: string) => ['zh', 'zh-tw'].includes(lang)
+  const length = isCJK(lang)
+    ? excerptLengths[scene].cjk
+    : excerptLengths[scene].other
+
+  // Remove HTML tags
+  let cleanText = text.replace(/<[^>]*>/g, '')
+
+  // Decode HTML entities
+  Object.entries(htmlEntityMap).forEach(([entity, char]) => {
+    cleanText = cleanText.replace(new RegExp(entity, 'g'), char)
+  })
+
+  // Normalize whitespace
+  cleanText = cleanText.replace(/\s+/g, ' ')
+
+  // Normalize CJK punctuation spacing
+  cleanText = cleanText.replace(/([。？！："」』])\s+/g, '$1')
+
+  const excerpt = cleanText.slice(0, length).trim()
+
+  // Remove trailing punctuation and add ellipsis
+  if (cleanText.length > length) {
+    return `${excerpt.replace(/\p{P}+$/u, '')}...`
+  }
+
+  return excerpt
+}
+
+// Generates post description from existing description or content
+export function getPostDescription(
   post: CollectionEntry<'posts'>,
   scene: ExcerptScene,
 ): string {
-  // If the article already has a description, return it directly
-  if (post.data.description)
-    return post.data.description
+  const lang = post.data.lang || defaultLocale
 
-  const lang = (!post.data.lang || post.data.lang === '') ? defaultLocale : post.data.lang
-  return generateExcerpt(post.body, scene, lang)
+  if (post.data.description) {
+    // Only truncate for og scene, return full description for other scenes
+    return scene === 'og'
+      ? getExcerpt(post.data.description, lang, scene)
+      : post.data.description
+  }
+
+  const content = post.body || ''
+
+  // Remove HTML comments and Markdown headings
+  const cleanedContent = content
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/^#{1,6}\s+\S.*$/gm, '')
+    .replace(/\n{2,}/g, '\n\n')
+
+  const htmlContent = markdownParser.render(cleanedContent)
+
+  return getExcerpt(htmlContent, lang, scene)
 }

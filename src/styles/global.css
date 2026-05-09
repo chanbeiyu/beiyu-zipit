@@ -1,62 +1,93 @@
-:root {
-  --uno-colors-primary: theme('colors.primary');
-  --uno-colors-secondary: theme('colors.secondary');
-  --uno-colors-background: theme('colors.background');
-}
-
 html {
   --at-apply: 'bg-background c-secondary antialiased';
+  scrollbar-width: thin;
+  scrollbar-color: oklch(var(--un-preset-theme-colors-secondary) / 0.25) transparent;
+  scrollbar-gutter: stable;
 }
 
+/* Fix Flash Issue On iOS */
 body {
-  --at-apply: 'ios-flash-fix';
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+body::selection {
+  --at-apply: 'bg-highlight';
 }
 
-/* article img {
-  --at-apply: 'cursor-zoom-in force-gpu';
-} */
-
-/* View Transition with Theme Toggle >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-::view-transition-new(theme-transition) {
-  animation: reveal 1s cubic-bezier(0.4, 0, 0.2, 1);
-  clip-path: inset(0 0 0 0);
-  z-index: 99;
+/* Fix KaTeX Overflow with Hidden Scrollbar */
+.katex-display {
+  --at-apply: 'my-6 overflow-x-auto overflow-y-hidden scrollbar-hidden';
+}
+.katex-display::-webkit-scrollbar {
+  display: none;
 }
 
-::view-transition-old(theme-transition) {
-  animation: none;
-  z-index: -1;
+/* Highlight Hover Animation >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.highlight-static,
+.highlight-hover {
+  --at-apply: 'relative inline-block';
+}
+.highlight-static::after,
+.highlight-hover::after {
+  --at-apply: 'absolute left-0 z--1 h-0.5em w-full bg-highlight';
+  content: '';
+}
+.highlight-static::after,
+.highlight-hover:hover::after {
+  --at-apply: 'origin-bottom-left scale-x-100';
+}
+.highlight-hover::after {
+  --at-apply: 'origin-bottom-right scale-x-0 transition-transform ease-out lg:duration-300';
 }
 
-@keyframes reveal {
-  from {
-    clip-path: inset(var(--from));
-  }
+/* Heading Anchor Link >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.heading-anchor-link {
+  --at-apply: 'inline-block translate-y-0.1em';
 }
-
-html.dark {
-  --from: 0 0 100% 0;
+h1:hover .heading-anchor-link svg,
+h2:hover .heading-anchor-link svg,
+h3:hover .heading-anchor-link svg,
+h4:hover .heading-anchor-link svg {
+  --at-apply: 'op-40';
 }
-
-html:not(.dark) {
-  --from: 100% 0 0 0;
+.heading-anchor-link svg {
+  --at-apply: 'ml-0.4em aspect-square w-0.9em op-0 transition-opacity ease-out active:scale-90';
 }
-
-/* Disable animations for other elements during theme switching */
-html[data-theme-transition] [data-disable-transition-on-theme] {
-  view-transition-name: none !important;
-}
-
-/* Fallback animation when view-transition-name is not supported */
-@supports not (view-transition-name: none) {
-  html:not([data-restore-theme]) {
-    --at-apply: 'transition-colors duration-300 ease-out';
-  }
+h1:hover .heading-anchor-link svg:hover,
+h2:hover .heading-anchor-link svg:hover,
+h3:hover .heading-anchor-link svg:hover,
+h4:hover .heading-anchor-link svg:hover {
+  --at-apply: 'op-80';
 }
 
 code {
   font-family:  ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", 'LXGWWenKaiLite-Medium', monospace !important
 }
+
+/* Code Copy Button >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.code-copy-button {
+  --at-apply: 'absolute right-2.2 top-2.2 z-99 aspect-square w-8 cursor-pointer uno-round-border border-secondary/15';
+  --at-apply: 'bg-background c-secondary/80 op-0 hover:(border-primary/15 c-primary/80)';
+  transition: opacity 300ms ease-out, background-color 150ms ease-out;
+}
+.code-block-wrapper:hover .code-copy-button {
+  --at-apply: 'op-100';
+}
+.code-copy-button.copy-success {
+  --at-apply: 'border-none bg-emerald-600 c-background';
+}
+html.dark .code-copy-button.copy-success {
+  --at-apply: 'bg-emerald-500';
+}
+.code-copy-button svg {
+  --at-apply: 'mx-auto aspect-square w-50%';
+}
+.code-copy-button svg,
+.code-copy-button svg path {
+  --at-apply: 'pointer-events-none';
+}
+
+
 
 /* Import Custom Fonts >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 /* Snell Roundhand Static Font */

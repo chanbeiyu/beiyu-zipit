@@ -24,7 +24,7 @@ export const themeConfig: ThemeConfig = {
   // COLOR SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   color: {
     // default theme mode
-    mode: 'light', // light, dark
+    mode: 'light', // light, dark, auto
     light: {
       // primary color
       // used for title, hover, etc
@@ -35,17 +35,19 @@ export const themeConfig: ThemeConfig = {
       secondary: 'oklch(40% 0.005 298)',
       // background color
       background: 'oklch(96% 0.005 298)',
+      // highlight color
+      // used for navbar, selected text, etc
+      highlight: 'oklch(0.93 0.195089 103.2532 / 0.5)', // rgba(255,235,0,0.5)
     },
     dark: {
       // primary color
-      // used for title, hover, etc
-      // oklch color picker: https://oklch.com/
       primary: 'oklch(92% 0.005 298)',
       // secondary color
-      // used for post text
       secondary: 'oklch(77% 0.005 298)',
       // background color
       background: 'oklch(22% 0.005 298)',
+      // highlight color
+      highlight: 'oklch(0.93 0.195089 103.2532 / 0.2)', // rgba(255,235,0,0.2)
     },
   },
   // COLOR SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
@@ -53,7 +55,7 @@ export const themeConfig: ThemeConfig = {
   // GLOBAL SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   global: {
     // default language
-    locale: 'zh', // zh, zh-tw, ja, en, es, ru
+    locale: 'zh', // de, en, es, fr, ja, ko, pl, pt, ru, zh, zh-tw
     // more languages
     // not fill in the locale code above again
     moreLocales: ['zh-tw', 'en'], // ['zh', 'zh-tw', 'ja', 'en', 'es', 'ru']
@@ -61,16 +63,39 @@ export const themeConfig: ThemeConfig = {
     fontStyle: 'lxgw', // sans, serif, lxgw
     // date format for posts
     dateFormat: 'YYYY-MM-DD', // YYYY-MM-DD, MM-DD-YYYY, DD-MM-YYYY, MONTH DAY YYYY, DAY MONTH YYYY
-    // gap between title and subtitle
-    titleGap: 2, // 1, 2, 3
+    // table of contents for posts
+    toc: true, // true, false
+    // KaTeX math rendering
+    katex: true, // true, false
+    // reduce motion
+    reduceMotion: false, // true, false
   },
-  // GLOBAL SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
+  // GLOBAL SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>x>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 
   // COMMENT SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   comment: {
     // enable comment system
     enabled: true, // true, false
-    // waline comment system
+    // giscus
+    // https://giscus.app/
+    giscus: {
+      repo: '',
+      repoId: '',
+      category: '',
+      categoryId: '',
+      mapping: 'pathname',
+      strict: '0',
+      reactionsEnabled: '1',
+      emitMetadata: '0',
+      inputPosition: 'bottom',
+    },
+    // twikoo
+    // https://twikoo.js.org/
+    twikoo: {
+      envId: '',
+      // version: frontend version can be changed in package.json
+    },
+    // waline
     // https://waline.js.org/en/
     waline: {
       // server url
@@ -85,7 +110,6 @@ export const themeConfig: ThemeConfig = {
       // gif search
       search: false, // true, false
       // image uploader
-      // bug: unable to hide image uploader icon
       imageUploader: false, // true, false
     },
   },
@@ -143,7 +167,7 @@ export const themeConfig: ThemeConfig = {
     links: [
       {
         name: 'RSS',
-        url: '/rss.xml', // rss.xml, atom.xml
+        url: '/rss.xml', // or /rss.xml
       },
       {
         name: 'GitHub',
@@ -165,16 +189,12 @@ export const themeConfig: ThemeConfig = {
 
   // PRELOAD SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   preload: {
-    // link prefetch
-    // docs: https://docs.astro.build/en/guides/prefetch/#prefetch-strategies
-    linkPrefetch: 'viewport', // hover, tap, viewport, load
-    // comment server url
-    commentURL: 'https://waline.ensoul.club',
     // image hosting url
-    imageHostURL: 'https://image.radishzz.cc',
+    // optimize remote images in Markdown files to avoid cumulative layout shift
+    imageHostURL: 'cdn.ensoul.club',
     // custom google analytics js
     // for users who route analytics javascript to a customized domain
-    // See https://gist.github.com/xiaopc/0602f06ca465d76bd9efd3dda9393738
+    // see https://gist.github.com/xiaopc/0602f06ca465d76bd9efd3dda9393738
     customGoogleAnalyticsJS: '',
     // custom umami analytics js
     // for users who deploy umami on their own, or route analytics javascript to a customized domain

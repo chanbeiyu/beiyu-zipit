@@ -75,7 +75,7 @@ global: {
   // more languages
   // Generate multi-language paths such as '/es/' '/ru/'
   // do not include the default language again, can be an empty array []
-  moreLocales: ['zh-tw', 'ja', 'en', 'es', 'ru'] // ['zh', 'zh-tw', 'ja', 'en', 'es', 'ru']
+  moreLocales: ['zh-tw', 'en'] // ['zh', 'zh-tw', 'ja', 'en', 'es', 'ru']
   // font style
   fontStyle: 'sans' // sans, serif
   // date format for posts

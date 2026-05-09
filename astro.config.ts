@@ -1,40 +1,45 @@
 import mdx from '@astrojs/mdx'
 import partytown from '@astrojs/partytown'
 import sitemap from '@astrojs/sitemap'
-import compress from 'astro-compress'
-import robotsTxt from 'astro-robots-txt'
+import Compress from 'astro-compress'
 import { defineConfig } from 'astro/config'
-import rehypeExternalLinks from 'rehype-external-links'
 import rehypeKatex from 'rehype-katex'
+import rehypeSlug from 'rehype-slug'
+import remarkDirective from 'remark-directive'
 import remarkMath from 'remark-math'
 import UnoCSS from 'unocss/astro'
 import { themeConfig } from './src/config'
 import { langMap } from './src/i18n/config'
-import { remarkReadingTime } from './src/plugins/remark-reading-time'
+import { rehypeCodeCopyButton } from './src/plugins/rehype-code-copy-button.mjs'
+import { rehypeExternalLinks } from './src/plugins/rehype-external-links.mjs'
+import { rehypeHeadingAnchor } from './src/plugins/rehype-heading-anchor.mjs'
+import { rehypeImageProcessor } from './src/plugins/rehype-image-processor.mjs'
+import { remarkContainerDirectives } from './src/plugins/remark-container-directives.mjs'
+import { remarkLeafDirectives } from './src/plugins/remark-leaf-directives.mjs'
+import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs'
 
-const url = themeConfig.site.url
-const locale = themeConfig.global.locale
-const linkPrefetch = themeConfig.preload.linkPrefetch
-const imageDomain = new URL(themeConfig.preload.imageHostURL as string).hostname
+const siteUrl = themeConfig.site.url
+const defaultLocale = themeConfig.global.locale
+const imageHostURL = themeConfig.preload?.imageHostURL
+const imageConfig = imageHostURL
+  ? { image: { domains: [imageHostURL], remotePatterns: [{ protocol: 'https' }] } }
+  : {}
 
 export default defineConfig({
-  site: url,
+  site: siteUrl,
   base: '/',
   trailingSlash: 'always',
   prefetch: {
     prefetchAll: true,
-    defaultStrategy: linkPrefetch,
+    defaultStrategy: 'viewport', // hover, tap, viewport, load
   },
-  image: {
-    domains: [imageDomain, 'cdn.ensoul.club'],
-    remotePatterns: [{ protocol: 'https' }],
-  },
+  ...imageConfig,
   i18n: {
     locales: Object.entries(langMap).map(([path, codes]) => ({
       path,
       codes: codes as [string, ...string[]],
     })),
-    defaultLocale: locale,
+    defaultLocale,
   },
   integrations: [
     UnoCSS({
@@ -43,31 +48,36 @@ export default defineConfig({
     mdx(),
     partytown({
       config: {
-        forward: ['dataLayer.push'],
+        forward: ['dataLayer.push', 'gtag'],
       },
     }),
     sitemap(),
-    robotsTxt(),
-    compress(),
+    Compress({
+      CSS: true,
+      HTML: true,
+      Image: false,
+      JavaScript: true,
+      SVG: false,
+    }),
   ],
   markdown: {
     remarkPlugins: [
+      remarkDirective,
       remarkMath,
+      remarkContainerDirectives,
+      remarkLeafDirectives,
       remarkReadingTime,
     ],
     rehypePlugins: [
       rehypeKatex,
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: ['nofollow', 'noopener', 'noreferrer', 'external'],
-          protocols: ['http', 'https', 'mailto'],
-        },
-      ],
+      rehypeSlug,
+      rehypeHeadingAnchor,
+      rehypeImageProcessor,
+      rehypeExternalLinks,
+      rehypeCodeCopyButton,
     ],
     shikiConfig: {
-      // available themes: https://shiki.style/themes
+      // Available themes: https://shiki.style/themes
       themes: {
         light: 'github-light',
         dark: 'github-dark',
@@ -77,5 +87,10 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
+  // For local development
+  server: {
+    headers: {
+      'Access-Control-Allow-Origin': 'https://giscus.app',
+    },
+  },
 })
-

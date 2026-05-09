@@ -34,19 +34,20 @@ const { lang } = Astro.props
 const pinnedPosts = await getPinnedPosts(lang)
 const postsByYear = await getPostsByYear(lang)
 ---
+
 <Layout>
   <!-- Pinned Posts -->
   {pinnedPosts.length > 0 && (
     <section class="mb-7.5">
-      <div class="uno-decorative-line"></div>
-      <PostList posts={pinnedPosts} lang={lang} />
+      <div class="uno-decorative-line" />
+      <PostList posts={pinnedPosts} lang={lang} pinned={true} />
     </section>
   )}
 
   <!-- Regular Posts -->
   {[...postsByYear.entries()].map(([_year, posts]) => (
     <section class="mb-7.5">
-      <div class="uno-decorative-line"></div>
+      <div class="uno-decorative-line" />
       <PostList posts={posts} lang={lang} />
     </section>
   ))}
