@@ -55,7 +55,7 @@
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.2.0",
     "@types/sanitize-html": "^2.16.0",
-    "@unocss/eslint-plugin": "66.4.1",
+    "@unocss/eslint-plugin": "66.6.8",
     "@unocss/preset-attributify": "66.4.1",
     "@unocss/reset": "66.4.1",
     "astro-eslint-parser": "^1.2.2",

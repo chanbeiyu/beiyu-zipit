@@ -89,7 +89,7 @@ importers:
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^5.2.0
-        version: 5.4.1(@typescript-eslint/rule-tester@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/typescript-estree@8.59.2(typescript@5.9.3))(@typescript-eslint/utils@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@unocss/eslint-plugin@66.4.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@vue/compiler-sfc@3.5.34)(astro-eslint-parser@1.4.0)(eslint-plugin-astro@1.7.0(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
+        version: 5.4.1(@typescript-eslint/rule-tester@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/typescript-estree@8.59.2(typescript@5.9.3))(@typescript-eslint/utils@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@unocss/eslint-plugin@66.6.8(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@vue/compiler-sfc@3.5.34)(astro-eslint-parser@1.4.0)(eslint-plugin-astro@1.7.0(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
       '@astrojs/check':
         specifier: ^0.9.4
         version: 0.9.9(prettier@3.8.3)(typescript@5.9.3)
@@ -106,8 +106,8 @@ importers:
         specifier: ^2.16.0
         version: 2.16.1
       '@unocss/eslint-plugin':
-        specifier: 66.4.1
-        version: 66.4.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
+        specifier: 66.6.8
+        version: 66.6.8(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
       '@unocss/preset-attributify':
         specifier: 66.4.1
         version: 66.4.1
@@ -152,7 +152,7 @@ importers:
         version: 66.4.1(postcss@8.5.14)(vite@6.4.2(@types/node@24.12.3)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.4))
       unocss-preset-theme:
         specifier: ^0.14.1
-        version: 0.14.1(@unocss/core@66.4.1)
+        version: 0.14.1(@unocss/core@66.6.8)
 
 packages:
 
@@ -1302,14 +1302,21 @@ packages:
     resolution: {integrity: sha512-ABiYEN9febHAfvpxzjrqdCrkomcDpcjCL1OPrWXLHOecfi2qZkj5sTASAfGUvqrV2WtZTPDQii6Nz1OisitRQQ==}
     engines: {node: '>=14'}
 
+  '@unocss/config@66.6.8':
+    resolution: {integrity: sha512-f+a8OyhD7ZoK8Pa1b3Cbx1RQc3n5x+Qht/cHg3wh/g4DNQIjBI2EqwSLfBigWhdO96zIqFAdyTlO3onmrJwUOw==}
+    engines: {node: '>=14'}
+
   '@unocss/core@0.63.6':
     resolution: {integrity: sha512-Q4QPgJ271Up89+vIqqOKgtdCKkFpHqvHN8W1LUlKPqtYnOvVYaOIVNAZowaIdEhPuc83yLc6Tg2+7riK18QKEw==}
 
   '@unocss/core@66.4.1':
     resolution: {integrity: sha512-2QMthvEmH0215zqIIL5WCodQ9lYShYDzziF4N1MMdcoRvCumGq9MMBFPxC54gNDrO3+/Olhp++YYmXkdZ89qrA==}
 
-  '@unocss/eslint-plugin@66.4.1':
-    resolution: {integrity: sha512-Kp4Ft8DYmeavEE/I/BXOom+msssAHNVl+Ia4TB6A6z7iQYZM8Xm5sDwjCQNkeBp1Z7C6JtcePfpUB0pGrM2l6A==}
+  '@unocss/core@66.6.8':
+    resolution: {integrity: sha512-P9IlQfgms+8/nka7fBhiiWU4SPwrTNKbTdK0z1SLnttXMHHjsB2zpG+Vi1JQDpICfY9Y1/2pWtguPE+zeOVu9Q==}
+
+  '@unocss/eslint-plugin@66.6.8':
+    resolution: {integrity: sha512-w51M8EwQZL7klOX+ZYS2zxxrj4AjfAtVenSCk+fXE+fSkC8aKNCpQpsV61Af/r9rIAy8GnbBL+QkcTOqkoKLrQ==}
     engines: {node: '>=14'}
 
   '@unocss/extractor-arbitrary-variants@66.4.1':
@@ -1363,6 +1370,10 @@ packages:
 
   '@unocss/rule-utils@66.4.1':
     resolution: {integrity: sha512-iYbx4ab3aTMrcJSyBoGvwsbUM5BmRQef4rzGOjL312r/0RDZM+i2ikPxcFXpp/9P+Gp22gSXDMlzwY+VfJ2Llw==}
+    engines: {node: '>=14'}
+
+  '@unocss/rule-utils@66.6.8':
+    resolution: {integrity: sha512-WR35L07mLP6PElD4hlUHo5KbQ48uz2HT/XCuJyAsHP+15Gv6539hPWA5SresPuva9r8rl+PeGIgMSIKf4A5Ihw==}
     engines: {node: '>=14'}
 
   '@unocss/transformer-attributify-jsx@66.4.1':
@@ -4998,7 +5009,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
 
-  '@antfu/eslint-config@5.4.1(@typescript-eslint/rule-tester@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/typescript-estree@8.59.2(typescript@5.9.3))(@typescript-eslint/utils@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@unocss/eslint-plugin@66.4.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@vue/compiler-sfc@3.5.34)(astro-eslint-parser@1.4.0)(eslint-plugin-astro@1.7.0(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)':
+  '@antfu/eslint-config@5.4.1(@typescript-eslint/rule-tester@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/typescript-estree@8.59.2(typescript@5.9.3))(@typescript-eslint/utils@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@unocss/eslint-plugin@66.6.8(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(@vue/compiler-sfc@3.5.34)(astro-eslint-parser@1.4.0)(eslint-plugin-astro@1.7.0(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@clack/prompts': 0.11.0
@@ -5038,7 +5049,7 @@ snapshots:
       vue-eslint-parser: 10.4.0(eslint@9.39.4(jiti@2.7.0))
       yaml-eslint-parser: 1.3.2
     optionalDependencies:
-      '@unocss/eslint-plugin': 66.4.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
+      '@unocss/eslint-plugin': 66.6.8(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
       astro-eslint-parser: 1.4.0
       eslint-plugin-astro: 1.7.0(eslint@9.39.4(jiti@2.7.0))
     transitivePeerDependencies:
@@ -6092,16 +6103,25 @@ snapshots:
       '@unocss/core': 66.4.1
       unconfig: 7.5.0
 
+  '@unocss/config@66.6.8':
+    dependencies:
+      '@unocss/core': 66.6.8
+      colorette: 2.0.20
+      consola: 3.4.2
+      unconfig: 7.5.0
+
   '@unocss/core@0.63.6': {}
 
   '@unocss/core@66.4.1': {}
 
-  '@unocss/eslint-plugin@66.4.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)':
+  '@unocss/core@66.6.8': {}
+
+  '@unocss/eslint-plugin@66.6.8(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/utils': 8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
-      '@unocss/config': 66.4.1
-      '@unocss/core': 66.4.1
-      '@unocss/rule-utils': 66.4.1
+      '@unocss/config': 66.6.8
+      '@unocss/core': 66.6.8
+      '@unocss/rule-utils': 66.6.8
       magic-string: 0.30.21
       synckit: 0.11.12
     transitivePeerDependencies:
@@ -6195,7 +6215,12 @@ snapshots:
 
   '@unocss/rule-utils@66.4.1':
     dependencies:
-      '@unocss/core': 66.4.1
+      '@unocss/core': 66.6.8
+      magic-string: 0.30.21
+
+  '@unocss/rule-utils@66.6.8':
+    dependencies:
+      '@unocss/core': 66.6.8
       magic-string: 0.30.21
 
   '@unocss/transformer-attributify-jsx@66.4.1':
@@ -10273,9 +10298,9 @@ snapshots:
       unist-util-is: 6.0.1
       unist-util-visit-parents: 6.0.2
 
-  unocss-preset-theme@0.14.1(@unocss/core@66.4.1):
+  unocss-preset-theme@0.14.1(@unocss/core@66.6.8):
     dependencies:
-      '@unocss/core': 66.4.1
+      '@unocss/core': 66.6.8
       '@unocss/rule-utils': 0.63.6
 
   unocss@66.4.1(postcss@8.5.14)(vite@6.4.2(@types/node@24.12.3)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.4)):
