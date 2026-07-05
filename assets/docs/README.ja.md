@@ -17,9 +17,9 @@ Retypeset は、日本語では「再組版」と呼ばれる、[Astro](https://
 ## 特徴
 
 - Astro と UnoCSS で構築
-- SEO、サイトマップ、OpenGraph、TOC、RSS、MDX と LaTeX のサポート
-- 多言語対応（i18n）
-- ライト/ダークモード
+- SEO、Sitemap、OpenGraph、RSS、MDX、LaTeX、Mermaid と TOC に対応
+- i18n 多言語対応
+- ライト / ダークモード
 - エレガントな遷移アニメーション
 - 豊富なテーマカスタマイズ
 - 日本語組版の最適化

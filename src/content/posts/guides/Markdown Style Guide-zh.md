@@ -1,7 +1,10 @@
 ---
 title: Markdown 样式指南
-published: 1848-02-21
-tags: ["指南"]
+published: 2025-03-08
+updated: 2025-03-23
+tags:
+  - 指南
+pin: 98
 toc: false
 lang: zh
 abbrlink: markdown-style-guide
@@ -53,21 +56,23 @@ abbrlink: markdown-style-guide
 
 ## 图片
 
-使用感叹号 `!` 方括号 `[]` 与圆括号 `()`，即可添加图片。这些符号都是英文半角符号，而非中文全角符号。
+使用感叹号 `!` 方括号 `[]` 与圆括号 `()`，即可添加图片。这些都是半角符号，而非全角符号。
 
 ### 语法
 
-```markdown
-![图片描述](https://cdn.ensoul.club/img/examples/img-2.webp)
+```
+![图片描述](../_images/image-01.jpeg)
+
+![图片描述](https://image.example.com/image-01.webp)
 ```
 
 ### 效果
 
-![图片描述](https://cdn.ensoul.club/img/examples/img-2.webp)
+![图片描述](https://image.radishzz.cc/picsmaller/03.webp)
 
 ## 块引用
 
-在段落前添加 `>` 符号和空格，即可创建块引用。在段落间的空行添加 `>` 符号，即可包含多个段落。若需标注引用来源，可使用 `<cite>`  或 `<footer>` 标签添加文献来源，同时可通过 `[^1]` 或 `[^note]` 格式插入脚注。
+使用 `>` 符号和空格，即可创建块引用，其中可包含多个段落。使用 `<cite>` 或 `<footer>` 标签，即可标注引用来源，同时可通过 `[^1]` 或 `[^note]` 格式插入脚注。
 
 ### 多个段落
 
@@ -94,7 +99,7 @@ abbrlink: markdown-style-guide
 >
 > —— <cite>《秋夜》[^1]</cite>
 
-[^1]: [《秋夜》](https://zh.wikisource.org/wiki/%E7%A7%8B%E5%A4%9C_(%E9%AD%AF%E8%BF%85)) 是鲁迅散文诗集《野草》中的第一首散文诗，创作于1924年。
+[^1]: 《[秋夜](https://zh.wikisource.org/wiki/%E7%A7%8B%E5%A4%9C_(%E9%AD%AF%E8%BF%85))》是鲁迅散文诗集《野草》中的第一首散文诗，创作于 1924 年。
 ```
 
 #### 效果
@@ -103,7 +108,7 @@ abbrlink: markdown-style-guide
 >
 > —— <cite>《秋夜》[^1]</cite>
 
-[^1]: [《秋夜》](https://zh.wikisource.org/wiki/%E7%A7%8B%E5%A4%9C_(%E9%AD%AF%E8%BF%85)) 是鲁迅散文诗集《野草》中的第一首散文诗，创作于1924年。
+[^1]: 《[秋夜](https://zh.wikisource.org/wiki/%E7%A7%8B%E5%A4%9C_(%E9%AD%AF%E8%BF%85))》是鲁迅散文诗集《野草》中的第一首散文诗，创作于 1924 年。
 
 ## 表格
 
@@ -127,11 +132,11 @@ abbrlink: markdown-style-guide
 
 ## 代码块
 
-在代码的顶部与底部添加三个反引号 ```` ``` ````，即可创建代码块。在顶部的反引号后标注语言类型，例如 html、javascript、css、markdown 等，即可实现语法高亮。
+使用三个反引号 ```` ``` ```` 包裹代码，即可创建代码块。在顶部的反引号后标注语言类型，例如 html、javascript、css、markdown 等，即可实现语法高亮。
 
 ### 语法
 
-````markdown
+````
 ```html
 <!doctype html>
 <html lang="zh-CN">
@@ -221,11 +226,11 @@ abbrlink: markdown-style-guide
 
 ## 其他元素
 
-包括 `<sup>` 上标，`<sub>` 下标，`<abbr>` 缩写，`<del>` 删除线，`<u>` 波浪线，`<kbd>` 键盘输入，`<mark>` 高亮。
+包括 `<sup>` 上标，`<sub>` 下标，`<abbr>` 缩写，`<del>` 删除线，`<u>` 波浪线，`<kbd>` 键盘输入，`<mark>` 高亮，`<hr>` 分隔线。
 
 ### 语法
 
-```markdown
+```html
 H<sub>2</sub>O
 
 X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
@@ -234,11 +239,15 @@ X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 
 书籍是人类进步的<del>楼梯</del>阶梯。
 
-优秀的作者总是会仔细检查<u title="拼">拚</u>写错误。
+优秀的作家总是会仔细检查<u title="拼写">拚写</u>问题。
 
 按下 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Delete</kbd> 以结束会话。
 
 大多数<mark>蝾螈</mark>昼伏夜出，以昆虫、蠕虫等小生物为食。
+
+使用三个连字符 `---` 或 `<hr>` 标签，即可创建如下分隔线。
+
+---
 ```
 
 ### 效果
@@ -257,14 +266,6 @@ X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 
 大多数<mark>蝾螈</mark>昼伏夜出，以昆虫、蠕虫等小生物为食。
 
-<!-- <details>
-  <summary>
-    我有钥匙却无门，有空间却无房间。你能进入却无法离开。我是什么？
-  </summary>
-  键盘。
-</details>
+使用三个连字符 `---` 或 `<hr>` 标签，即可创建如下分隔线。
 
-<figure>
-  <img src="https://image.radishzz.cc/picsmaller/03.webp">
-  <figcaption text-center="">Node 模块检查器 - 概览</figcaption>
-</figure> -->
+---

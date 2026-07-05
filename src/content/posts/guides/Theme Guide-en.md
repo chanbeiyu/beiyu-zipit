@@ -1,16 +1,20 @@
 ---
 title: Theme Guide
-published: 1848-02-21
-tags: ["Blog Theme","Guide"]
+published: 2025-01-26
+updated: 2025-04-13
+tags:
+  - Blog Theme
+  - Guide
+pin: 99
 lang: en
 abbrlink: theme-guide
 ---
 
-Retypeset is a static blog theme based on the [Astro](https://astro.build/) framework. Inspired by [Typography](https://astro-theme-typography.vercel.app/), Retypeset establishes a new visual standard and reimagines the layout of all pages, creating a reading experience reminiscent of paper books, reviving the beauty of typography. Details in every sight, elegance in every space.
+Retypeset is a static blog theme based on the [Astro](https://astro.build/) framework. This guide introduces how to modify theme configuration and create new posts, helping you quickly set up your personal blog.
 
 ## Theme Configuration
 
-Below is the theme configuration guide for Retypeset. Customize your blog by modifying the configuration file [src/config.ts](https://github.com/radishzzz/astro-theme-retypeset/blob/master/src/config.ts).
+Customize your blog by modifying the configuration file [src/config.ts](https://github.com/radishzzz/astro-theme-retypeset/blob/master/src/config.ts).
 
 ### Site Information
 
@@ -23,14 +27,17 @@ site: {
   // site description
   description: 'Retypeset is a static blog theme...'
   // use i18n title/subtitle/description from src/i18n/ui.ts instead of static ones above
-  i18nTitle: true // true, false
+  i18nTitle: true // true | false
   // author name
   author: 'radishzz'
   // site url
   url: 'https://retypeset.radishzz.cc'
+  // base path
+  // root directory for all pages and assets
+  base: '/' // e.g., '/blog', '/docs'
   // favicon url
   // recommended formats: svg, png or ico
-  favicon: '/icon/favicon.svg' // or https://example.com/favicon.svg
+  favicon: '/icons/favicon.svg' // or https://example.com/favicon.svg
 }
 ```
 
@@ -39,7 +46,7 @@ site: {
 ```ts
 color: {
   // default theme mode
-  mode: 'light' // light, dark
+  mode: 'light' // light | dark | auto
   // light mode
   light: {
     // primary color
@@ -50,17 +57,20 @@ color: {
     secondary: 'oklch(40% 0.005 298)'
     // background color
     background: 'oklch(96% 0.005 298)'
+    // highlight color
+    // used for navbar, selected text, etc
+    highlight: 'oklch(0.93 0.195089 103.2532 / 0.5)'
   }
   // dark mode
   dark: {
     // primary color
-    // used for title, hover, etc
     primary: 'oklch(92% 0.005 298)'
     // secondary color
-    // used for post text
     secondary: 'oklch(77% 0.005 298)'
     // background color
     background: 'oklch(22% 0.005 298)'
+    // highlight color
+    highlight: 'oklch(0.93 0.195089 103.2532 / 0.2)'
   }
 }
 ```
@@ -71,17 +81,23 @@ color: {
 global: {
   // default language
   // language of the site root path '/'
-  locale: 'zh' // zh, zh-tw, ja, en, es, ru
+  locale: 'zh' // de | en | es | fr | ja | ko | pl | pt | ru | zh | zh-tw
   // more languages
-  // Generate multi-language paths such as '/es/' '/ru/'
-  // do not include the default language again, can be an empty array []
-  moreLocales: ['zh-tw', 'en'] // ['zh', 'zh-tw', 'ja', 'en', 'es', 'ru']
-  // font style
-  fontStyle: 'sans' // sans, serif
-  // date format for posts
-  dateFormat: 'YYYY-MM-DD' // YYYY-MM-DD, MM-DD-YYYY, DD-MM-YYYY, MONTH DAY YYYY, DAY MONTH YYYY
-  // gap between title and subtitle
-  titleGap: 2 // 1, 2, 3
+  // generate multi-language paths such as '/en/' '/es/'
+  // not fill in the locale code above again, can be an empty array []
+  moreLocales: ['en', 'es', 'ja', 'ru', 'zh-tw'] // ['de', 'en', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'ru', 'zh', 'zh-tw']
+  // post font style
+  fontStyle: 'sans' // sans | serif
+  // post date format
+  // YYYY-MM-DD | MM-DD-YYYY | DD-MM-YYYY | MMM D YYYY | D MMM YYYY
+  // 2025-04-13, 04-13-2025, 13-04-2025, Apr 13 2025，13 Apr 2025
+  dateFormat: 'YYYY-MM-DD'
+  // enable table of contents
+  toc: true // true | false
+  // enable katex math rendering
+  katex: true // true | false
+  // reduce motion
+  reduceMotion: false // true | false
 }
 ```
 
@@ -90,7 +106,24 @@ global: {
 ```ts
 comment: {
   // enable comment system
-  enabled: true // true, false
+  enabled: true // true | false
+  // giscus comment system
+  giscus: {
+    repo: ''
+    repoId: ''
+    category: ''
+    categoryId: ''
+    mapping: 'pathname'
+    strict: '0'
+    reactionsEnabled: '1'
+    emitMetadata: '0'
+    inputPosition: 'bottom'
+  }
+  // twikoo comment system
+  twikoo: {
+    envId: ''
+    // version: frontend version can be changed in package.json
+  }
   // waline comment system
   waline: {
     // server url
@@ -102,9 +135,9 @@ comment: {
       // more emojis: https://waline.js.org/en/guide/features/emoji.html
     ]
     // gif search
-    search: false // true, false
+    search: false // true | false
     // image uploader
-    imageUploader: false // true, false
+    imageUploader: false // true | false
   }
 }
 ```
@@ -129,16 +162,16 @@ seo: {
   // google analytics
   googleAnalyticsID: ''
   // umami analytics
-  umamiAnalyticsID: '520af332-bfb7-4e7c-9386-5f273ee3d697'
-  // follow verification
-  follow: {
+  umamiAnalyticsID: 'dab0e4b9-9cbf-43c3-af60-b09d3b545c38'
+  // folo verification
+  folo: {
     // feed ID
     feedID: ''
     // user ID
     userID: ''
   }
   // apiflash access key
-  // automatically generate website screenshots for open graph images
+  // generate website screenshots for open graph images
   // get your access key at: https://apiflash.com/
   apiflashKey: ''
 }
@@ -152,23 +185,23 @@ footer: {
   links: [
     {
       name: 'RSS',
-      url: '/rss.xml', // rss.xml, atom.xml
+      url: '/atom.xml', // or /rss.xml
     },
     {
       name: 'GitHub',
       url: 'https://github.com/radishzzz/astro-theme-retypeset',
     },
     {
-      name: 'Twitter',
-      url: 'https://x.com/radishzz_',
-    },
+      name: 'Email',
+      url: 'email@radishzz.cc',
+    }
     // {
-    //   name: 'Email',
-    //   url: 'https://example@gmail.com',
-    // }
+    //   name: 'X',
+    //   url: 'https://x.com/radishzz_',
+    // },
   ]
   // year of website start
-  startYear: 2024
+  startYear: 2025
 }
 ```
 
@@ -176,26 +209,114 @@ footer: {
 
 ```ts
 preload: {
-  // link prefetch strategies
-  linkPrefetch: 'viewport' // hover, tap, viewport, load
-  // comment server url
-  commentURL: 'https://retypeset-comment.radishzz.cc'
   // image hosting url
-  imageHostURL: 'https://image.radishzz.cc'
+  // optimize remote images and generate low-quality placeholders
+  imageHostURL: 'image.radishzz.cc'
   // custom google analytics js
-  // for users who route analytics javascript to a customized domain
+  // for users who proxy tracking scripts to a custom domain
   customGoogleAnalyticsJS: ''
   // custom umami analytics js
-  // for users who deploy umami on their own, or route analytics javascript to a customized domain
-  customUmamiAnalyticsJS: 'https://js.radishzz.cc/jquery.min.js'
+  // for users who self-deploy umami or proxy tracking scripts to a custom domain
+  customUmamiAnalyticsJS: 'https://views.radishzz.cc/script.js'
 }
+```
+
+## Additional Configuration
+
+Besides the configuration file `src/config.ts`, some configuration options are located in other files.
+
+### Syntax Highlighting
+
+Code block syntax highlighting themes.
+
+```ts
+// astro.config.ts
+
+shikiConfig: {
+  // Available themes: https://shiki.style/themes
+  // Background color follows the blog theme by default, not the syntax highlighting theme
+  themes: {
+    light: 'github-light' // Light theme
+    dark: 'github-dark' // Dark theme
+  }
+}
+```
+
+### Post Excerpt
+
+Character count for automatic post excerpts.
+
+```ts
+// src/utils/description.ts
+
+const excerptLengths: Record<ExcerptScene, {
+  cjk: number // Chinese, Japanese, Korean
+  other: number // Other languages
+}> = {
+  list: { // Homepage post list
+    cjk: 120, // Auto-excerpts first 120 characters
+    other: 240, // Auto-excerpts first 240 characters
+  },
+}
+```
+
+### Open Graph
+
+[Open Graph social card](https://orcascan.com/tools/open-graph-validator?url=https%3A%2F%2Fretypeset.radishzz.cc%2Fen%2Fposts%2Ftheme-guide%2F) styles.
+
+```ts
+// src/pages/og/[...image].ts
+
+getImageOptions: (_path, page) => ({
+  logo: {
+    path: './public/icons/og-logo.png', // Required local path and PNG format
+    size: [250], // Logo width
+  },
+  font: {
+    title: { // Title
+      families: ['Noto Sans SC'], // Font
+      weight: 'Bold', // Weight
+      color: [34, 33, 36], // Color
+      lineHeight: 1.5, // Line height
+    },
+  },
+  fonts: [ // Font paths (local or remote)
+    'https://cdn.jsdelivr.net/gh/notofonts/noto-cjk@main/Sans/SubsetOTF/SC/NotoSansSC-Bold.otf',
+    'https://cdn.jsdelivr.net/gh/notofonts/noto-cjk@main/Sans/SubsetOTF/SC/NotoSansSC-Regular.otf',
+  ],
+  bgGradient: [[242, 241, 245]], // Background color
+  // More configurations: https://github.com/delucis/astro-og-canvas/tree/latest/packages/astro-og-canvas
+})
+```
+
+### RSS Feed
+
+[RSS feed page](https://retypeset.radishzz.cc/en/atom.xml) styles.
+
+```html
+<!-- public/feeds/xxx-style.xsl -->
+
+<style type="text/css">
+body{color:oklch(25% 0.005 298)} /* Font color */
+.bg-white{background-color:oklch(0.96 0.005 298)!important} /* Background color */
+.text-gray{color:oklch(0.25 0.005 298 / 75%)!important} /* Secondary font color */
+</style>
 ```
 
 ## Creating a New Post
 
-Create a new file with `.md` or `.mdx` extension in the `src/content/posts/` directory, and add Front Matter metadata at the top of the file.
+Run `pnpm new-post <filename>` to create a new post, which can then be edited in the `src/content/posts/` directory.
+
+```bash
+pnpm new-post                      ->  src/content/posts/new-post.md
+pnpm new-post first-post           ->  src/content/posts/first-post.md
+pnpm new-post 2025/03/first-post   ->  src/content/posts/2025/03/first-post.md
+pnpm new-post first-post.mdx       ->  src/content/posts/first-post.mdx
+```
 
 ### Front Matter
+
+Only `title` and `published` are required fields, all other configurations can be omitted.
 
 ```markdown
 ---
@@ -204,15 +325,17 @@ title: Theme Guide
 published: 2025-01-26
 
 # Optional
-description: The first 240 characters of the article will be automatically selected as the description.
+description: The first 240 characters of the post will be automatically selected as the excerpt.
 updated: 2025-03-26
-tags: ["Blog Theme", "Guide"]
+tags:
+  - Blog Theme
+  - Guide
 
-# Advanced, optional
+# Advanced, Optional
 draft: true/false
-pin: 1-99
+pin: 0-99
 toc: true/false
-lang: en/es/ru/zh/zh-tw/ja
+lang: de/en/es/fr/ja/ko/pl/pt/ru/zh/zh-tw
 abbrlink: theme-guide
 ---
 ```
@@ -221,19 +344,19 @@ abbrlink: theme-guide
 
 #### draft
 
-Marks the article as a draft. When set to true, the article cannot be published and is only available for local development preview. Default is false.
+Marks the post as a draft. When set to true, the post cannot be published and is only available for local development preview. Default is false.
 
 #### pin
 
-Pins the article to the top. The higher the number, the higher the priority of the pinned article. Default is 0, which means not pinned.
+Pins the post to the top. The higher the number, the higher the priority of the pinned post. Default is 0, which means not pinned.
 
 #### toc
 
-Generate table of contents. Default is true.
+Generate table of contents. Shows h2 to h4 headings. Determined by the global configuration `global.toc` by default, but can be overridden individually in each post.
 
 #### lang
 
-Specifies the article language. Only one language can be specified. If not specified, the article will be displayed in all language paths by default.
+Specifies the post language. Only one language can be specified. If not specified, the post will be displayed in all language paths by default.
 
 ```md
 # src/config.ts
@@ -241,20 +364,20 @@ Specifies the article language. Only one language can be specified. If not speci
 # moreLocales: ['es', 'ru']
 
 # lang: ''
-src/content/posts/apple.md   -> example.com/posts/apple/
-                             -> example.com/es/posts/apple/
-                             -> example.com/ru/posts/apple/
+src/content/posts/apple.md   ->  example.com/posts/apple/
+                             ->  example.com/es/posts/apple/
+                             ->  example.com/ru/posts/apple/
 # lang: en
-src/content/posts/apple.md   -> example.com/posts/apple/
+src/content/posts/apple.md   ->  example.com/posts/apple/
 # lang: es
-src/content/posts/apple.md   -> example.com/es/posts/apple/
+src/content/posts/apple.md   ->  example.com/es/posts/apple/
 # lang: ru
-src/content/posts/apple.md   -> example.com/ru/posts/apple/
+src/content/posts/apple.md   ->  example.com/ru/posts/apple/
 ```
 
 #### abbrlink
 
-Customizes the article URL.
+Customizes the post URL. Can only contain lowercase letters, numbers, and hyphens `-`.
 
 ```md
 # src/config.ts
@@ -273,6 +396,16 @@ src/content/posts/guide/apple.md     ->  example.com/es/posts/banana/
 src/content/posts/2025/03/apple.md   ->  example.com/es/posts/banana/
 ```
 
-### Automated Features
+### Mixed Text Formatting
 
-Automatically calculates article reading time. Automatically generates Open Graph images for each article. Articles with the same abbrlink will automatically share Waline comments, regardless of the lang configuration.
+Run `pnpm format-posts` to optimize the formatting in Markdown files within the `src/content/` directory. This command automatically fixes spacing between CJK (Chinese, Japanese, Korean) and Latin characters, corrects punctuation marks, and improves overall text readability.
+
+```bash
+pnpm format-posts
+🔍 Scanning Markdown files...
+📦 Found 56 Markdown files
+✅ src/content/posts/guides/Theme Guide-ja.md
+✅ src/content/posts/guides/Theme Guide-zh-tw.md
+✅ src/content/posts/guides/Theme Guide-zh.md
+✨ Formatted 3 files successfully
+```

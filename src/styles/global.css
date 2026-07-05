@@ -3,6 +3,7 @@ html {
   scrollbar-width: thin;
   scrollbar-color: oklch(var(--un-preset-theme-colors-secondary) / 0.25) transparent;
   scrollbar-gutter: stable;
+  text-autospace: normal;
 }
 
 /* Fix Flash Issue On iOS */
@@ -12,14 +13,6 @@ body {
 }
 body::selection {
   --at-apply: 'bg-highlight';
-}
-
-/* Fix KaTeX Overflow with Hidden Scrollbar */
-.katex-display {
-  --at-apply: 'my-6 overflow-x-auto overflow-y-hidden scrollbar-hidden';
-}
-.katex-display::-webkit-scrollbar {
-  display: none;
 }
 
 /* Highlight Hover Animation >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
@@ -60,72 +53,39 @@ h4:hover .heading-anchor-link svg:hover {
   --at-apply: 'op-80';
 }
 
-code {
-  font-family:  ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", 'LXGWWenKaiLite-Medium', monospace !important
+/* Image Zoom >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.zoom-overlay {
+  --at-apply: 'fixed left-0 top-0 z-999 hidden h-full w-full cursor-zoom-out bg-background/95 op-0 transition-opacity duration-300';
+}
+.zoom-img {
+  --at-apply: 'fixed z-1000 cursor-zoom-out transition-transform duration-300';
 }
 
 /* Code Copy Button >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 .code-copy-button {
-  --at-apply: 'absolute right-2.2 top-2.2 z-99 aspect-square w-8 cursor-pointer uno-round-border border-secondary/15';
-  --at-apply: 'bg-background c-secondary/80 op-0 hover:(border-primary/15 c-primary/80)';
-  transition: opacity 300ms ease-out, background-color 150ms ease-out;
+  --at-apply: 'absolute right-2.2 top-2.2 z-99 grid aspect-square w-8 cursor-pointer place-items-center uno-round-border';
+  --at-apply: 'border-secondary/15 bg-background c-secondary/80 op-0 hover:(border-primary/15 c-primary/80)';
+  transition: opacity 0.15s ease-out, background-color 0.15s ease-out;
 }
 .code-block-wrapper:hover .code-copy-button {
   --at-apply: 'op-100';
 }
-.code-copy-button.copy-success {
+.icon-copy,
+.icon-check {
+  --at-apply: '[grid-area:1/1] aspect-square w-50%';
+}
+.icon-check {
+  --at-apply: 'op-0';
+}
+.code-copy-button.copied {
   --at-apply: 'border-none bg-emerald-600 c-background';
 }
-html.dark .code-copy-button.copy-success {
+html.dark .code-copy-button.copied {
   --at-apply: 'bg-emerald-500';
 }
-.code-copy-button svg {
-  --at-apply: 'mx-auto aspect-square w-50%';
+.code-copy-button.copied .icon-copy {
+  --at-apply: 'op-0';
 }
-.code-copy-button svg,
-.code-copy-button svg path {
-  --at-apply: 'pointer-events-none';
-}
-
-
-
-/* Import Custom Fonts >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-/* Snell Roundhand Static Font */
-@font-face {
-  font-family: "Snell-Bold";
-  src: url("/font/Snell-Bold.woff2") format("woff2");
-  font-display: swap;
-  unicode-range: U+0030-0039,U+0041-005A,U+0061-007A,U+00C1,U+00C9,U+00CD,U+00D3,U+00DA,U+00DC,U+00D1,U+00E1,U+00E9,U+00ED,U+00F3,U+00FA,U+00FC,U+00F1,U+0410-044F,U+0401,U+0451,U+0021-002F,U+003A-0040,U+00A9;
-}
-
-@font-face {
-  font-family: "Snell-Black";
-  src: url("/font/Snell-Black.woff2") format("woff2");
-  font-display: swap;
-  unicode-range: U+0030-0039,U+0041-005A,U+0061-007A,U+00C1,U+00C9,U+00CD,U+00D3,U+00DA,U+00DC,U+00D1,U+00E1,U+00E9,U+00ED,U+00F3,U+00FA,U+00FC,U+00F1,U+0410-044F,U+0401,U+0451,U+0021-002F,U+003A-0040,U+00A9;
-}
-
-/* STIXTwoText Variable Font */
-@font-face {
-  font-family: "STIX";
-  src: url("/font/STIX.woff2") format("woff2-variations");
-  font-display: swap;
-  font-weight: 400 700;
-  unicode-range: U+0030-0039,U+0041-005A,U+0061-007A,U+00C1,U+00C9,U+00CD,U+00D3,U+00DA,U+00DC,U+00D1,U+00E1,U+00E9,U+00ED,U+00F3,U+00FA,U+00FC,U+00F1,U+0410-044F,U+0401,U+0451,U+0021-002F,U+003A-0040,U+00A9;
-}
-
-@font-face {
-  font-family: "STIX-Italic";
-  src: url("/font/STIX-Italic.woff2") format("woff2-variations");
-  font-display: swap;
-  font-weight: 400 700;
-  unicode-range: U+0030-0039,U+0041-005A,U+0061-007A,U+00C1,U+00C9,U+00CD,U+00D3,U+00DA,U+00DC,U+00D1,U+00E1,U+00E9,U+00ED,U+00F3,U+00FA,U+00FC,U+00F1,U+0410-044F,U+0401,U+0451,U+0021-002F,U+003A-0040,U+00A9;
-}
-
-/* Minimal Subset of EarlySummerSerif Variable Font */
-@font-face {
-  font-family: "EarlySummer-Subset";
-  src: url("/font/EarlySummer-Subset.woff2") format("woff2-variations");
-  font-display: swap;
-  font-weight: 400 700;
+.code-copy-button.copied .icon-check {
+  --at-apply: 'op-100';
 }

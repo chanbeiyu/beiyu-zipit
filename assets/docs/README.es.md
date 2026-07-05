@@ -17,8 +17,8 @@ Retypeset es un tema de blog estático basado en el framework [Astro](https://as
 ## Características
 
 - Construido con Astro y UnoCSS
-- Soporte para SEO, Sitemap, OpenGraph, TOC, RSS, MDX y LaTeX
-- Soporte para múltiples idiomas (i18n)
+- Soporte para SEO, Sitemap, OpenGraph, RSS, MDX, LaTeX, Mermaid y TOC
+- i18n soporte
 - Modo claro / oscuro
 - Transiciones de vista elegantes
 - Rica personalización de temas

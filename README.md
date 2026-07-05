@@ -19,7 +19,7 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 ## Features
 
 - Built with Astro and UnoCSS
-- Support for SEO, Sitemap, OpenGraph, TOC, RSS, MDX and LaTeX
+- Support for SEO, Sitemap, OpenGraph, RSS, MDX, LaTeX, Mermaid, and TOC
 - i18n support
 - Light / Dark mode
 - Elegant view transitions

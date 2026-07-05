@@ -1,7 +1,10 @@
 ---
 title: Markdown Style Guide
-published: 1848-02-21
-tags: ["Guide"]
+published: 2025-03-08
+updated: 2025-03-23
+tags:
+  - Guide
+pin: 98
 toc: false
 lang: en
 abbrlink: markdown-style-guide
@@ -11,7 +14,7 @@ Here are some basic Markdown syntax examples and their stylistic effects in Rety
 
 ## Headings
 
-To create a heading, add number signs `#` in front of a word or phrase. The number of number signs you use should correspond to the heading level.
+To create headings, add number signs `#` in front of a word or phrase. The number of number signs you use should correspond to the heading level.
 
 ### Syntax
 
@@ -33,7 +36,7 @@ To create a heading, add number signs `#` in front of a word or phrase. The numb
 ##### Heading 5
 ###### Heading 6
 
-## Paragraph
+## Paragraphs
 
 To create paragraphs, use a blank line to separate one or more lines of text.
 
@@ -53,21 +56,23 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 ## Images
 
-To add an image, add an exclamation mark `!`, followed by alt text in brackets `[]`, and the path or URL to the image asset in parentheses `()`.
+To add images, add an exclamation mark `!`, followed by alt text in brackets `[]`, and the path or URL to the image asset in parentheses `()`.
 
 ### Syntax
 
-```markdown
-![Image Description](https://cdn.ensoul.club/img/examples/img-2.webp)
+```
+![Image Description](../_images/image-01.jpeg)
+
+![Image Description](https://image.example.com/image-01.webp)
 ```
 
 ### Output
 
-![Image Description](https://cdn.ensoul.club/img/examples/img-2.webp)
+![Image Description](https://image.radishzz.cc/picsmaller/03.webp)
 
 ## Blockquotes
 
-To create a blockquote, add a `>` in front of a paragraph. To create a blockquote with multiple paragraphs, add a `>` symbol to the empty lines between paragraphs. To cite sources, you can use the `<cite>` or `<footer>` tags for bibliographic references, while footnotes may be inserted using the `[^1]` or `[^note]` syntax.
+To create blockquotes, add a `>` symbol and a space before text. Blockquotes can contain multiple paragraphs. To cite sources, use `<cite>` or `<footer>` tags, while footnotes may be inserted using the `[^1]` or `[^note]` syntax.
 
 ### Blockquote with multiple paragraphs
 
@@ -107,7 +112,7 @@ To create a blockquote, add a `>` in front of a paragraph. To create a blockquot
 
 ## Tables
 
-To add a table, use three or more hyphens `---` to create each column’s header, and use pipes `|` to separate each column.
+To add tables, use three or more hyphens `---` to create each column's header, and use pipes `|` to separate each column.
 
 ### Syntax
 
@@ -127,11 +132,11 @@ To add a table, use three or more hyphens `---` to create each column’s header
 
 ## Code Blocks
 
-To create a code block, add three backticks ```` ``` ```` at the start and end of your code. You can indicate the programming language being used after the opening backticks to indicate how to color and style your code, for eg. html, javascript, css, markdown etc.
+To create code blocks, wrap your code with three backticks ```` ``` ````. You can indicate the programming language being used after the opening backticks to indicate how to color and style your code, e.g., html, javascript, css, markdown, etc.
 
 ### Syntax
 
-````markdown
+````
 ```html
 <!doctype html>
 <html lang="en">
@@ -185,14 +190,14 @@ To create a code block, add three backticks ```` ``` ```` at the start and end o
 
 ```markdown
 - List item
-- Another item
+- Chart item
 - And another item
 ```
 
 #### Output
 
 - List item
-- Another item
+- Chart item
 - And another item
 
 ### Nested list
@@ -221,7 +226,7 @@ To create a code block, add three backticks ```` ``` ```` at the start and end o
 
 ## Other Elements
 
-Including `<sup>` superscript, `<sub>` subscript, `<abbr>` abbreviation, `<del>` strikethrough, `<u>` wavy underline, `<kbd>` keyboard input, and `<mark>` highlight.
+Including `<sup>` superscript, `<sub>` subscript, `<abbr>` abbreviation, `<del>` strikethrough, `<u>` wavy underline, `<kbd>` keyboard input, `<mark>` highlight, and `<hr>` horizontal rule.
 
 ### Syntax
 
@@ -239,6 +244,10 @@ Press <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>Delete</kbd> to end the session.
 There is <del>nothing</del> no code either good or bad, but running it makes it so.
 
 Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+
+Use three hyphens `---` or the `<hr>` tag to create a horizontal rule as shown below.
+
+---
 ```
 
 ### Output
@@ -256,3 +265,7 @@ Press <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>Delete</kbd> to end the session.
 There is <del>nothing</del> no code either good or bad, but running it makes it so.
 
 Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+
+Use three hyphens `---` or the `<hr>` tag to create a horizontal rule as shown below.
+
+---

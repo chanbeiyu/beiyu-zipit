@@ -1,6 +1,11 @@
-import type { supportedLangs } from '@/i18n/config'
+import type { CollectionEntry } from 'astro:content'
+import type { Language } from '@/i18n/config'
 
-type Exclude<T, U> = T extends U ? never : T
+export type Post = CollectionEntry<'posts'> & {
+  remarkPluginFrontmatter: {
+    minutes: number
+  }
+}
 
 export interface ThemeConfig {
   site: {
@@ -10,6 +15,7 @@ export interface ThemeConfig {
     i18nTitle: boolean
     author: string
     url: string
+    base: string
     favicon: string
   }
   color: {
@@ -28,10 +34,10 @@ export interface ThemeConfig {
     }
   }
   global: {
-    locale: typeof supportedLangs[number]
-    moreLocales: typeof supportedLangs[number][]
+    locale: Language
+    moreLocales: Language[]
     fontStyle: 'sans' | 'serif' | 'lxgw'
-    dateFormat: 'YYYY-MM-DD' | 'MM-DD-YYYY' | 'DD-MM-YYYY' | 'MONTH DAY YYYY' | 'DAY MONTH YYYY'
+    dateFormat: 'YYYY-MM-DD' | 'MM-DD-YYYY' | 'DD-MM-YYYY' | 'MMM D YYYY' | 'D MMM YYYY'
     toc: boolean
     katex: boolean
     reduceMotion: boolean
@@ -69,13 +75,11 @@ export interface ThemeConfig {
     }
     googleAnalyticsID?: string
     umamiAnalyticsID?: string
-    follow?: {
+    folo?: {
       feedID?: string
       userID?: string
     }
     apiflashKey?: string
-    vercelAnalytics?: boolean
-    vercelSpeedInsights?: boolean
   }
   footer: {
     links: {
@@ -90,5 +94,3 @@ export interface ThemeConfig {
     customUmamiAnalyticsJS?: string
   }
 }
-
-export default ThemeConfig

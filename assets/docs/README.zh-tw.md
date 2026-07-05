@@ -17,9 +17,9 @@ Retypeset 是一款基於 [Astro](https://astro.build/) 框架的靜態部落格
 ## 特色
 
 - 基於 Astro 與 UnoCSS 開發
-- 支援 SEO、Sitemap、OpenGraph、TOC、RSS、MDX 和 LaTeX
+- 支援 SEO、Sitemap、OpenGraph、RSS、MDX、LaTeX、Mermaid 和 TOC
 - i18n 多語言
-- 亮色/暗色模式
+- 亮色 / 暗色模式
 - 優雅的過渡動畫
 - 豐富的主題配置
 - 中文排版優化

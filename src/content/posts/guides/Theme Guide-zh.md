@@ -1,16 +1,20 @@
 ---
 title: 主题上手指南
-published: 1848-02-21
-tags: [博客主题, 指南]
+published: 2025-01-26
+updated: 2025-04-13
+tags:
+  - 博客主题
+  - 指南
+pin: 99
 lang: zh
 abbrlink: theme-guide
 ---
 
-Retypeset 是一款基于 [Astro](https://astro.build/) 框架的静态博客主题，中文名为重新编排。本主题以 [活版印字](https://astro-theme-typography.vercel.app/) 为设计灵感，通过建立全新的视觉规范，对所有页面进行重新编排，打造纸质书页般的阅读体验，再现版式之美。所见皆为细节，方寸尽显优雅。
+Retypeset 是一款基于 [Astro](https://astro.build/) 框架的静态博客主题，中文名为重新编排。本文为 Retypeset 主题上手指南，主要介绍如何修改主题配置与创建新文章，来帮助你快速搭建个人博客。
 
 ## 主题配置
 
-以下为 Retypeset 的主题配置介绍。通过修改配置文件 [src/config.ts](https://github.com/radishzzz/astro-theme-retypeset/blob/master/src/config.ts) 来自定义你的博客。
+通过修改配置文件 [src/config.ts](https://github.com/radishzzz/astro-theme-retypeset/blob/master/src/config.ts) 来自定义你的博客。
 
 ### 站点信息
 
@@ -20,17 +24,20 @@ site: {
   title: 'Retypeset'
   // 站点副标题
   subtitle: 'Revive the beauty of typography'
-  // 站点介绍
+  // 站点描述
   description: 'Retypeset is a static blog theme...'
-  // 使用 src/i18n/ui.ts 中的多语言标题/副标题/站点描述，替换以上静态配置
-  i18nTitle: true // true, false
+  // 使用 src/i18n/ui.ts 中的多语言标题/副标题/站点描述，代替上方静态配置
+  i18nTitle: true // true | false
   // 作者名称
   author: 'radishzz'
   // 站点地址
   url: 'https://retypeset.radishzz.cc'
+  // 基础路径
+  // 所有页面和资产的根目录
+  base: '/' // 例如 '/blog', '/docs'
   // 站点图标
-  // 推荐格式: svg, png, ico
-  favicon: '/icon/favicon.svg' // 或 https://example.com/favicon.svg
+  // 推荐格式：svg, png, ico
+  favicon: '/icons/favicon.svg' // 或 https://example.com/favicon.svg
 }
 ```
 
@@ -39,10 +46,10 @@ site: {
 ```ts
 color: {
   // 默认主题
-  mode: 'light' // light, dark
+  mode: 'light' // light | dark | auto
   // 亮色模式
   light: {
-    // 高亮颜色
+    // 主要颜色
     // 用于站点标题、鼠标悬停效果等
     primary: 'oklch(25% 0.005 298)'
     // 次要颜色
@@ -50,17 +57,20 @@ color: {
     secondary: 'oklch(40% 0.005 298)'
     // 背景色
     background: 'oklch(96% 0.005 298)'
+    // 高亮颜色
+    // 用于导航栏、选中文本等
+    highlight: 'oklch(0.93 0.195089 103.2532 / 0.5)'
   }
   // 暗色模式
   dark: {
-    // 高亮颜色
-    // 用于标题、hover等
+    // 主要颜色
     primary: 'oklch(92% 0.005 298)'
     // 次要颜色
-    // 用于普通文本
     secondary: 'oklch(77% 0.005 298)'
     // 背景色
     background: 'oklch(22% 0.005 298)'
+    // 高亮颜色
+    highlight: 'oklch(0.93 0.195089 103.2532 / 0.5)'
   }
 }
 ```
@@ -70,28 +80,51 @@ color: {
 ```ts
 global: {
   // 默认语言
-  // 站点根路径 ‘/’ 的语言
-  locale: 'zh' // zh, zh-tw, ja, en, es, ru
+  // 站点根路径 '/' 的语言
+  locale: 'zh' // de | en | es | fr | ja | ko | pl | pt | ru | zh | zh-tw
   // 更多语言
-  // 生成 ‘/ja/' '/en/’ 等多语言路径
+  // 生成 '/en/' '/es/' 等多语言路径
   // 不要重复填写默认语言，可以为空 []
-  moreLocales: ['zh-tw', 'en'] // ['zh', 'zh-tw', 'ja', 'en', 'es', 'ru']
+  moreLocales: ['en', 'es', 'ja', 'ru', 'zh-tw'] // ['de', 'en', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'ru', 'zh', 'zh-tw']
   // 字体样式
-  fontStyle: 'sans' // sans, serif
+  fontStyle: 'sans' // sans | serif
   // 文章日期格式
-  dateFormat: 'YYYY-MM-DD' // YYYY-MM-DD, MM-DD-YYYY, DD-MM-YYYY, MONTH DAY YYYY, DAY MONTH YYYY
-  // 标题与副标题之间的距离
-  titleGap: 2 // 1, 2, 3
+  // YYYY-MM-DD | MM-DD-YYYY | DD-MM-YYYY | MMM D YYYY | D MMM YYYY
+  // 2025-04-13, 04-13-2025, 13-04-2025, Apr 13 2025，13 Apr 2025
+  dateFormat: 'YYYY-MM-DD'
+  // 开启文章目录
+  toc: true // true | false
+  // 开启 KaTeX 数学渲染
+  katex: true // true | false
+  // 减少动画效果
+  reduceMotion: false // true | false
 }
 ```
 
-### 评论服务
+### 评论系统
 
 ```ts
 comment: {
-  // 开启评论
-  enabled: true // true, false
-  // waline 评论
+  // 开启评论系统
+  enabled: true // true | false
+  // giscus 评论系统
+  giscus: {
+    repo: ''
+    repoId: ''
+    category: ''
+    categoryId: ''
+    mapping: 'pathname'
+    strict: '0'
+    reactionsEnabled: '1'
+    emitMetadata: '0'
+    inputPosition: 'bottom'
+  }
+  // twikoo 评论系统
+  twikoo: {
+    envId: ''
+    // version: 前端版本可在 package.json 中修改
+  }
+  // waline 评论系统
   waline: {
     // 服务器地址
     serverURL: 'https://retypeset-comment.radishzz.cc'
@@ -99,12 +132,12 @@ comment: {
     emoji: [
       'https://unpkg.com/@waline/emojis@1.2.0/tw-emoji'
       // 'https://unpkg.com/@waline/emojis@1.2.0/bmoji'
-      // 更多表情: https://waline.js.org/en/guide/features/emoji.html
+      // 更多表情：https://waline.js.org/en/guide/features/emoji.html
     ]
     // gif 搜索
-    search: false // true, false
+    search: false // true | false
     // 图片上传
-    imageUploader: false // true, false
+    imageUploader: false // true | false
   }
 }
 ```
@@ -129,17 +162,17 @@ seo: {
   // google 网站分析
   googleAnalyticsID: ''
   // umami 网站分析
-  umamiAnalyticsID: '520af332-bfb7-4e7c-9386-5f273ee3d697'
-  // follow 验证
-  follow: {
+  umamiAnalyticsID: 'dab0e4b9-9cbf-43c3-af60-b09d3b545c38'
+  // folo 验证
+  folo: {
     // 订阅 ID
     feedID: ''
     // 用户 ID
     userID: ''
   }
-  // apiflash access key 访问密钥
-  // 自动生成网站截图用于 open graph
-  // 获取访问密钥: https://apiflash.com/
+  // apiflash 访问密钥
+  // 生成网站截图用于 open graph
+  // 获取访问密钥：https://apiflash.com/
   apiflashKey: ''
 }
 ```
@@ -152,23 +185,23 @@ footer: {
   links: [
     {
       name: 'RSS',
-      url: '/rss.xml', // rss.xml, atom.xml
+      url: '/atom.xml', // 或 /rss.xml
     },
     {
       name: 'GitHub',
       url: 'https://github.com/radishzzz/astro-theme-retypeset',
     },
     {
-      name: 'Twitter',
-      url: 'https://x.com/radishzz_',
-    },
+      name: 'Email',
+      url: 'email@radishzz.cc',
+    }
     // {
-    //   name: 'Email',
-    //   url: 'https://example@gmail.com',
-    // }
+    //   name: 'X',
+    //   url: 'https://x.com/radishzz_',
+    // },
   ]
   // 建站年份
-  startYear: 2024
+  startYear: 2025
 }
 ```
 
@@ -176,48 +209,138 @@ footer: {
 
 ```ts
 preload: {
-  // 链接预加载策略
-  linkPrefetch: 'viewport' // hover, tap, viewport, load
-  // 评论服务器地址
-  commentURL: 'https://retypeset-comment.radishzz.cc'
   // 图床地址
-  imageHostURL: 'https://image.radishzz.cc'
-  // 定制 google analytics js
-  // 适用于路由 google analytics js 到自定义域名的用户
+  // 优化远程图片并生成低质量占位符
+  imageHostURL: 'image.radishzz.cc'
+  // 定制 google analytics 跟踪脚本
+  // 适用于代理跟踪脚本到自定义域名的用户
   customGoogleAnalyticsJS: ''
-  // 定制 umami analytics js
-  // 适用于自部署 umami，或路由 umami analytics js 到自定义域名的用户
-  customUmamiAnalyticsJS: 'https://js.radishzz.cc/jquery.min.js'
+  // 定制 umami 跟踪脚本
+  // 适用于自部署 umami 或代理跟踪脚本到自定义域名的用户
+  customUmamiAnalyticsJS: 'https://views.radishzz.cc/script.js'
 }
+```
+
+## 更多配置
+
+除了配置文件 `src/config.ts` 外，还有部分配置项位于其它文件中。
+
+### 语法高亮
+
+代码块的语法高亮主题。
+
+```ts
+// astro.config.ts
+
+shikiConfig: {
+  // 可选主题：https://shiki.style/themes
+  // 背景色固定跟随博客主题，而非语法高亮主题
+  themes: {
+    light: 'github-light' // 亮色主题
+    dark: 'github-dark' // 暗色主题
+  }
+}
+```
+
+### 文章摘要
+
+文章自动摘要的字符数量。
+
+```ts
+// src/utils/description.ts
+
+const excerptLengths: Record<ExcerptScene, {
+  cjk: number // 中文、日文、韩文
+  other: number // 其他语言
+}> = {
+  list: { // 首页文章列表
+    cjk: 120, // 自动摘要前 120 字
+    other: 240, // 自动摘要前 240 字
+  },
+}
+```
+
+### Open Graph
+
+[Open Graph 社交卡片](https://orcascan.com/tools/open-graph-validator?url=https%3A%2F%2Fretypeset.radishzz.cc%2Fposts%2Ftheme-guide%2F) 样式。
+
+```ts
+// src/pages/og/[...image].ts
+
+getImageOptions: (_path, page) => ({
+  logo: {
+    path: './public/icons/og-logo.png', // 本地路径的 PNG 图片
+    size: [250], // logo 宽度
+  },
+  font: {
+    title: { // 标题
+      families: ['Noto Sans SC'], // 字体
+      weight: 'Bold', // 字重
+      color: [34, 33, 36], // 颜色
+      lineHeight: 1.5, // 行高
+    },
+  },
+  fonts: [ // 字体路径（本地或远程）
+    'https://cdn.jsdelivr.net/gh/notofonts/noto-cjk@main/Sans/SubsetOTF/SC/NotoSansSC-Bold.otf',
+    'https://cdn.jsdelivr.net/gh/notofonts/noto-cjk@main/Sans/SubsetOTF/SC/NotoSansSC-Regular.otf',
+  ],
+  bgGradient: [[242, 241, 245]], // 背景色
+  // 更多配置：https://github.com/delucis/astro-og-canvas/tree/latest/packages/astro-og-canvas
+})
+```
+
+### RSS 订阅
+
+[RSS 订阅页](https://retypeset.radishzz.cc/atom.xml) 配色。
+
+```html
+<!-- public/feeds/xxx-style.xsl -->
+
+<style type="text/css">
+body{color:oklch(25% 0.005 298)} /* 字体颜色 */
+.bg-white{background-color:oklch(0.96 0.005 298)!important} /* 背景颜色 */
+.text-gray{color:oklch(0.25 0.005 298 / 75%)!important} /* 次要字体颜色 */
+</style>
 ```
 
 ## 创建新文章
 
-在 `src/content/posts/` 目录中新建以 `.md` 或 `.mdx` 为后缀的文件，并在文件顶部添加 Front Matter 元数据。
+执行 `pnpm new-post <filename>` 创建新文章，可在 `src/content/posts/` 目录中编辑。
+
+```bash
+pnpm new-post                      ->  src/content/posts/new-post.md
+pnpm new-post first-post           ->  src/content/posts/first-post.md
+pnpm new-post 2025/03/first-post   ->  src/content/posts/2025/03/first-post.md
+pnpm new-post first-post.mdx       ->  src/content/posts/first-post.mdx
+```
 
 ### Front Matter
 
-```markdown
+`title` 和 `published` 为必填项，其余配置均可删除。
+
+```md
 ---
 # 必填
 title: 主题上手指南
 published: 2025-01-26
 
 # 可选
-description: 自动选取文章前 120 字作为描述。
+description: 自动选取文章前 120 字作为摘要。
 updated: 2025-03-26
-tags: [博客主题, 指南]
+tags:
+  - 博客主题
+  - 指南
 
 # 进阶，可选
 draft: true/false
-pin: 1-99
+pin: 0-99
 toc: true/false
-lang: zh/zh-tw/ja/en/es/ru
+lang: de/en/es/fr/ja/ko/pl/pt/ru/zh/zh-tw
 abbrlink: theme-guide
 ---
 ```
 
-### 进阶配置介绍
+### 进阶配置
 
 #### draft
 
@@ -229,7 +352,7 @@ abbrlink: theme-guide
 
 #### toc
 
-是否生成目录。默认为 true。
+是否生成目录。显示 h2 至 h4 标题。默认由全局配置项 `global.toc` 决定，可在文章中单独设置以覆盖全局配置。
 
 #### lang
 
@@ -241,20 +364,20 @@ abbrlink: theme-guide
 # moreLocales: ['es', 'ru']
 
 # lang: ''
-src/content/posts/apple.md   -> example.com/posts/apple/
-                             -> example.com/es/posts/apple/
-                             -> example.com/ru/posts/apple/
+src/content/posts/apple.md   ->  example.com/posts/apple/
+                             ->  example.com/es/posts/apple/
+                             ->  example.com/ru/posts/apple/
 # lang: en
-src/content/posts/apple.md   -> example.com/posts/apple/
+src/content/posts/apple.md   ->  example.com/posts/apple/
 # lang: es
-src/content/posts/apple.md   -> example.com/es/posts/apple/
+src/content/posts/apple.md   ->  example.com/es/posts/apple/
 # lang: ru
-src/content/posts/apple.md   -> example.com/ru/posts/apple/
+src/content/posts/apple.md   ->  example.com/ru/posts/apple/
 ```
 
 #### abbrlink
 
-自定义文章 URL。
+自定义文章 URL。只能包含小写字母、数字和连字符 `-`。
 
 ```md
 # src/config.ts
@@ -273,6 +396,16 @@ src/content/posts/guide/apple.md     ->  example.com/es/posts/banana/
 src/content/posts/2025/03/apple.md   ->  example.com/es/posts/banana/
 ```
 
-### 自动化配置介绍
+### 混排优化
 
-自动计算文章阅读时间。自动为每篇文章生成 Open Graph 图片。相同 abbrlink 的文章会自动共享 Waline 评论，且不受 lang 配置影响。
+执行 `pnpm format-posts`，可优化 `src/content/` 目录中 Markdown 文件的排版格式。在 CJK（中文、日文、韩文）与英文混写的场景下，补充正确的空格，纠正标点符号等。
+
+```bash
+pnpm format-posts
+🔍 Scanning Markdown files...
+📦 Found 56 Markdown files
+✅ src/content/posts/guides/Theme Guide-ja.md
+✅ src/content/posts/guides/Theme Guide-zh-tw.md
+✅ src/content/posts/guides/Theme Guide-zh.md
+✨ Formatted 3 files successfully
+```
