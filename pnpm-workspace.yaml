@@ -1,0 +1,10 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+  simple-git-hooks: true
+  ttf2woff2: true
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - simple-git-hooks
+  - ttf2woff2

@@ -2,7 +2,7 @@
   "name": "astro-theme-retypeset",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@11.9.0",
   "repository": "https://github.com/radishzzz/astro-theme-retypeset",
   "scripts": {
     "dev": "astro check && astro dev",
@@ -17,12 +17,12 @@
     "update-theme": "tsx scripts/update-theme.ts"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.11",
-    "@vercel/analytics": "^1.5.0",
-    "@vercel/speed-insights": "^1.2.0",
     "@astrojs/mdx": "^4.3.3",
     "@astrojs/partytown": "^2.1.4",
+    "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.2",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "@waline/client": "^3.6.0",
     "astro": "^5.12.8",
     "astro-compress": "^2.3.8",
@@ -45,10 +45,6 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "font-slice": "^1.0.2",
-    "mdast-util-to-string": "^4.0.0",
-    "reading-time": "^1.5.0",
-    "sharp": "^0.33.5",
     "@antfu/eslint-config": "^5.2.0",
     "@astrojs/check": "^0.9.4",
     "@lokesh.dhakar/quantize": "^1.4.0",
@@ -63,8 +59,12 @@
     "eslint": "^9.32.0",
     "eslint-plugin-astro": "^1.3.1",
     "fast-glob": "^3.3.3",
+    "font-slice": "^1.0.2",
     "lint-staged": "^16.1.4",
+    "mdast-util-to-string": "^4.0.0",
     "ndarray-pixels": "^5.0.1",
+    "reading-time": "^1.5.0",
+    "sharp": "^0.33.5",
     "simple-git-hooks": "^2.13.1",
     "tsx": "^4.20.3",
     "typescript": "~5.9.2",
