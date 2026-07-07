@@ -1,6 +1,6 @@
 ---
 title: 老子《道德經》帛書校訂版
-published: 2025-03-30
+published: 2025-12-31
 tags: ["道","國學"]
 lang: zh-tw
 abbrlink: tao-te-ching

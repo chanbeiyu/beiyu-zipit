@@ -1,6 +1,6 @@
 ---
 title: KaTeX 數學演示
-published: 2025-04-01
+published: 1848-02-21
 lang: zh-tw
 abbrlink: katex-mathematical-demo
 ---

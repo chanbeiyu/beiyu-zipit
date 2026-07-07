@@ -1,6 +1,6 @@
 ---
 title: Tao Te Ching
-published: 2025-03-30
+published: 2025-12-31
 tags: ["Tao","Modern Literature"]
 lang: en
 toc: false
